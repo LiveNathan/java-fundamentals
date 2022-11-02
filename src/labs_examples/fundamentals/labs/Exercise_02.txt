@@ -4,16 +4,24 @@
 
 Initializing git folder
     1. In CodingNomads folder, create new folder git_practice
+        mkdir git_practice
     2. Inside git_practice:
         a. Initialize folder as a git folder (make sure you are in the correct folder when initializing) by running
             the "git init" command within the git_practice folder.
+                git init
         b. Make new file
+            touch a.txt
         c. Add file
+            git add a.txt
         d. Commit file
+            git commit -m "just a test text empty file"
         c. On Github, create new git_practice repository
+            👍
         d. Add this new GitHub repository as a new "remote" to your local Git repo. You can do this by using the command
             git remote add <ANY_NAME> <URL_OF_NEW_GITHUB_REPO.git>
+            git remote add origin https://github.com/LiveNathan/git_practice.git
         d. Push commit file to Github
+            git push -u origin main
         e. Practice the following git flow until you feel comfortable:
             i.   Create or modify file
             ii.  Add file(s)
@@ -24,11 +32,17 @@ Adding a remote
     1. Create new personal repository on Github named "git_practice_2".
     2. On local machine, add the new remote address to the same git repo you were working with in the previous section above
         (directions are provided on Github with new repo is created)
+        git remote add nathan https://github.com/LiveNathan/git_practice_2.git
     3. Push local git repository to your Github using the new remote.
+        git push nathan main
 
 Cloning repository from Github
     1. Find a repository on Github
     2. Clone repository to local machine
+        git clone https://github.com/OpenAPITools/openapi-generator
     3. Create new repository on Github
+        👍
     4. Add new remote on local machine
+        git remote add nathan2 https://github.com/LiveNathan/openapi-generator.git
     5. Push to new Github repository
+        

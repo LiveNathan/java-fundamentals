@@ -44,5 +44,4 @@ Cloning repository from Github
         👍
     4. Add new remote on local machine
         git remote add nathan2 https://github.com/LiveNathan/openapi-generator.git
-    5. Push to new Github repository
-        
+    5. Push to new GitHub repository

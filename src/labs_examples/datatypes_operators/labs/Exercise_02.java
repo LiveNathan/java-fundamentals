@@ -23,7 +23,13 @@ public class Exercise_02 {
 
     public static void main(String[] args) {
 
-        // write code here
+        int i = 10;
+        double d = i;
+        System.out.printf("%f is a double from an integer.", d);
+
+        double d2 = 10.5;
+        int i2 = (int) d2;
+        System.out.printf("%n%d is an double cast to an integer.", i2);
 
     }
 }

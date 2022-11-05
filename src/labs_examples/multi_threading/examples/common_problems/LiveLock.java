@@ -8,8 +8,8 @@ public class LiveLock {
     // Create two Locks
     // Lock functionality is a similar to synchronized block,
     // but it provides explicit lock/unlock methods
-    private static Lock lock1 = new ReentrantLock(true);
-    private static Lock lock2 = new ReentrantLock(true);
+    private static final Lock lock1 = new ReentrantLock(true);
+    private static final Lock lock2 = new ReentrantLock(true);
 
     public static void main(String[] args) {
         new Thread(new A(lock1, lock2), "A").start();

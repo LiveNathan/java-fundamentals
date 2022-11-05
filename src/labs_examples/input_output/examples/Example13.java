@@ -5,7 +5,7 @@ package labs_examples.input_output.examples;
 import java.io.PrintWriter;
 
 class PrintWriterDemo {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         PrintWriter pw = new PrintWriter(System.out, true);
         int i = 10;

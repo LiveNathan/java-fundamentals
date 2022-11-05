@@ -14,7 +14,7 @@ class LogicalOperators {
         boolean a = false;
         boolean b = false;
         if (a & b){
-            System.out.printf("a AND b are true.");
+            System.out.print("a AND b are true.");
         }
 
         if (a && b){

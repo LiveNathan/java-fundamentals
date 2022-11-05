@@ -35,7 +35,7 @@ class TwoDShape6 {
 
 // A subclass of TwoDShape for triangles.
 class Triangle6 extends TwoDShape6 {
-    private String style;
+    private final String style;
 
     // A default constructor.
     Triangle6() {
@@ -67,7 +67,7 @@ class Triangle6 extends TwoDShape6 {
 }
 
 class Shapes5 {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Triangle6 t1 = new Triangle6();
         Triangle6 t2 = new Triangle6("outlined", 8.0, 12.0);
         Triangle6 t3 = new Triangle6(4.0);

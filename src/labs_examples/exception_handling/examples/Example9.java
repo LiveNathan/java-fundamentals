@@ -2,7 +2,7 @@ package labs_examples.exception_handling.examples;
 
 // Manually throw an exception.
 class ThrowDemo {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         try {
             System.out.println("Before throw.");
             throw new ArithmeticException();

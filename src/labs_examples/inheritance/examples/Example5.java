@@ -21,7 +21,7 @@ class TwoDShape4 {
 
 // A subclass of TwoDShape for triangles.
 class Triangle4 extends TwoDShape4 {
-    private String style;
+    private final String style;
 
     // Constructor
     Triangle4(String s, double w, double h) {
@@ -41,7 +41,7 @@ class Triangle4 extends TwoDShape4 {
 }
 
 class Shapes3 {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Triangle4 t1 = new Triangle4("filled", 4.0, 4.0);
         Triangle4 t2 = new Triangle4("outlined", 8.0, 12.0);
 

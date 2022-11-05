@@ -3,7 +3,7 @@ package labs_examples.exception_handling.examples;
 // Demonstrate the queue exceptions.
 class QExcDemo{
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         QueueThread thread1 = new QueueThread("thread 1");
         QueueThread thread2 = new QueueThread("thread 2");
     }

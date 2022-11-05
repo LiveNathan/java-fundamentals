@@ -1,7 +1,7 @@
 package labs_examples.packages.examples.package_02;
 
 class IFExtend {
-    public static void main(String arg[]) {
+    public static void main(String[] arg) {
 //        MyClass ob = new MyClass();
 //
 //        ob.meth1();

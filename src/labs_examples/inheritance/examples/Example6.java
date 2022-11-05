@@ -25,7 +25,7 @@ class TwoDShape5 {
 
 // A subclass of TwoDShape for triangles.
 class Triangle5 extends TwoDShape5 {
-    private String style;
+    private final String style;
 
     Triangle5(String s, double w, double h) {
         super(w, h); // call superclass constructor
@@ -43,7 +43,7 @@ class Triangle5 extends TwoDShape5 {
 }
 
 class Shapes4 {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Triangle5 t1 = new Triangle5("filled", 4.0, 4.0);
         Triangle5 t2 = new Triangle5("outlined", 8.0, 12.0);
 

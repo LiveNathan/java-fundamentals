@@ -5,6 +5,6 @@ package labs_examples.lambdas.examples.functional_interfaces;
  */
 public interface SimpleInterface {
 
-    public void methodOne();
+    void methodOne();
 
 }

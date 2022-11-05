@@ -12,7 +12,7 @@ public class LiquorStore {
         try {
             someMethod();
         } catch (UnderAgeException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
 
     }

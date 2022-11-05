@@ -2,7 +2,7 @@ package labs_examples.interfaces.examples;
 
 // A dynamic queue.
 class DynQueue implements ICharQ {
-    private char q[]; // this array holds the queue
+    private char[] q; // this array holds the queue
     private int putloc, getloc; // the put and get indices
 
     // Construct an empty queue given its size.
@@ -20,11 +20,10 @@ class DynQueue implements ICharQ {
     public void put(char ch) {
         if(putloc==q.length) {
             // increase queue size
-            char t[] = new char[q.length * 2];
+            char[] t = new char[q.length * 2];
 
             // copy elements into new queue
-            for(int i=0; i < q.length; i++)
-                t[i] = q[i];
+            System.arraycopy(q, 0, t, 0, q.length);
 
             q = t;
         }

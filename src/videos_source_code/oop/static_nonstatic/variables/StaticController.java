@@ -15,16 +15,16 @@ public class StaticController {
 //        System.out.println(house2.toString());
 //        System.out.println(house3.toString());
 
-        System.out.println(house1.numHousesBuilt);
-        System.out.println(house2.numHousesBuilt);
-        System.out.println(house3.numHousesBuilt);
+        System.out.println(House.numHousesBuilt);
+        System.out.println(House.numHousesBuilt);
+        System.out.println(House.numHousesBuilt);
 
         House house4 = new House(2000, "678 D Street");
 
-        System.out.println(house1.numHousesBuilt);
-        System.out.println(house2.numHousesBuilt);
-        System.out.println(house3.numHousesBuilt);
-        System.out.println(house4.numHousesBuilt);
+        System.out.println(House.numHousesBuilt);
+        System.out.println(House.numHousesBuilt);
+        System.out.println(House.numHousesBuilt);
+        System.out.println(House.numHousesBuilt);
 
     }
 

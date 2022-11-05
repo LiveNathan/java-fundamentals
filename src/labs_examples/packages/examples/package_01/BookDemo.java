@@ -1,8 +1,8 @@
 package labs_examples.packages.examples.package_01;
 
 public class BookDemo {
-    public static void main(String args[]) {
-        Book books[] = new Book[5];
+    public static void main(String[] args) {
+        Book[] books = new Book[5];
 
         books[0] = new Book("Java: A Beginner's Guide",
                 "Schildt", 2014);

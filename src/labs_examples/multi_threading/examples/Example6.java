@@ -29,7 +29,7 @@ class MyThread5 implements Runnable {
 }
 
 class JoinThreads {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         System.out.println("Main thread starting.");
 
         MyThread5 mt1 = new MyThread5("Child #1");

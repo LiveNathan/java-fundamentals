@@ -7,7 +7,7 @@ import labs_examples.datastructures.linkedlist.examples.CustomLinkedList;
  */
 public class CustomStackExample<V> {
 
-    private CustomLinkedList<V> list = new CustomLinkedList<>();
+    private final CustomLinkedList<V> list = new CustomLinkedList<>();
 
     /**
      * Adds an item to the stack

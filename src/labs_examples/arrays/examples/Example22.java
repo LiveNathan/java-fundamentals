@@ -2,7 +2,7 @@ package labs_examples.arrays.examples;
 
 // Display all command-line information.
 class CLDemo {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         System.out.println("There are " + args.length +
                 " command-line arguments.");
 

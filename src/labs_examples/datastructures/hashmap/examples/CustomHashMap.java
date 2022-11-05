@@ -147,13 +147,11 @@ public class CustomHashMap<K, V> {
         if(entry.next.next != null){
             entry.next = entry.next.next;
             numElements--;
-            return;
         }
         // otherwise, entry.next is the end of the list so we can just chop it off
         else {
             entry.next = null;
             numElements--;
-            return;
         }
     }
 
@@ -208,7 +206,7 @@ public class CustomHashMap<K, V> {
  * A Key-Value Pair
  */
  class Entry<K, V> {
-    private K key;
+    private final K key;
     private V value;
     // it means this is a LinkedList
     Entry next = null;

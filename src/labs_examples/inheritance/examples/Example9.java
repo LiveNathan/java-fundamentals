@@ -52,7 +52,7 @@ class Truck extends Vehicle {
 }
 
 class TruckDemo {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         // construct some trucks
         Truck semi = new Truck(2, 200, 7, 44000);

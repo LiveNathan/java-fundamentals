@@ -29,7 +29,7 @@ class Overload {
 }
 
 class OverloadDemo {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Overload ob = new Overload();
         int resI;
         double resD;

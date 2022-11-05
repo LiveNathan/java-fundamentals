@@ -9,7 +9,7 @@ import labs_examples.datastructures.linkedlist.examples.CustomLinkedList;
 public class CustomQueue<V> {
 
     // create a LinkedList for us to use as the underlying data structure
-    private CustomLinkedList<V> list = new CustomLinkedList<>();
+    private final CustomLinkedList<V> list = new CustomLinkedList<>();
 
     // simple boolean to track whether or not the queue is empty
     private boolean isEmpty;

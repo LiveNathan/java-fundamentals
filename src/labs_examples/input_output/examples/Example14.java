@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 class KtoD {
-    public static void main(String args[])
+    public static void main(String[] args)
     {
 
         String str;

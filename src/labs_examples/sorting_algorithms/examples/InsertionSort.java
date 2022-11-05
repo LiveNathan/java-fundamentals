@@ -14,7 +14,7 @@ public class InsertionSort {
         }
     }
 
-    public static int[] insertionSort(int nums[])
+    public static int[] insertionSort(int[] nums)
     {
         // iterate over the length of the array
         for (int i = 1; i < nums.length; ++i) {

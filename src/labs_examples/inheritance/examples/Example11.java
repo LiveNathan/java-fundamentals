@@ -35,7 +35,7 @@ class TwoDShape7 {
 
 // Extend TwoDShape.
 class Triangle7 extends TwoDShape7 {
-    private String style;
+    private final String style;
 
     // A default constructor.
     Triangle7() {
@@ -67,7 +67,7 @@ class Triangle7 extends TwoDShape7 {
 
 // Extend Triangle.
 class ColorTriangle extends Triangle7 {
-    private String color;
+    private final String color;
 
     ColorTriangle(String c, String s,
                   double w, double h) {
@@ -84,7 +84,7 @@ class ColorTriangle extends Triangle7 {
 }
 
 class Shapes6 {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         ColorTriangle t1 =
                 new ColorTriangle("Blue", "outlined", 8.0, 12.0);
         ColorTriangle t2 =

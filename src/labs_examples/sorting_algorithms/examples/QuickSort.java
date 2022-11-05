@@ -12,7 +12,7 @@ public class QuickSort
        smaller (smaller than pivot) to left of
        pivot and all greater elements to right
        of pivot */
-    int partition(int arr[], int low, int high)
+    int partition(int[] arr, int low, int high)
     {
         int pivot = arr[high];
         int i = (low-1); // index of smaller element
@@ -44,7 +44,7 @@ public class QuickSort
       arr[] --> Array to be sorted,
       low  --> Starting index,
       high  --> Ending index */
-    void sort(int arr[], int low, int high)
+    void sort(int[] arr, int low, int high)
     {
         if (low < high)
         {
@@ -60,7 +60,7 @@ public class QuickSort
     }
 
     /* A utility function to print array of size n */
-    static void printArray(int arr[])
+    static void printArray(int[] arr)
     {
         int n = arr.length;
         for (int i=0; i<n; ++i)
@@ -69,9 +69,9 @@ public class QuickSort
     }
 
     // Driver program
-    public static void main(String args[])
+    public static void main(String[] args)
     {
-        int arr[] = {10, 7, 8, 9, 1, 5};
+        int[] arr = {10, 7, 8, 9, 1, 5};
         int n = arr.length;
 
         QuickSort ob = new QuickSort();

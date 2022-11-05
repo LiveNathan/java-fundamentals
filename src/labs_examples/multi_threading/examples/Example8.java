@@ -5,7 +5,7 @@ package labs_examples.multi_threading.examples;
 class SumArray {
     private int sum;
 
-    synchronized int sumArray(int nums[]) {
+    synchronized int sumArray(int[] nums) {
         sum = 0; // reset sum
 
         for(int i=0; i<nums.length; i++) {
@@ -27,11 +27,11 @@ class SumArray {
 class MyThread6 implements Runnable {
     Thread thrd;
     static SumArray sa = new SumArray();
-    int a[];
+    int[] a;
     int answer;
 
     // Construct a new thread.
-    MyThread6(String name, int nums[]) {
+    MyThread6(String name, int[] nums) {
         thrd = new Thread(this, name);
         a = nums;
         thrd.start(); // start the thread
@@ -52,8 +52,8 @@ class MyThread6 implements Runnable {
 }
 
 class Sync {
-    public static void main(String args[]) {
-        int a[] = {1, 2, 3, 4, 5};
+    public static void main(String[] args) {
+        int[] a = {1, 2, 3, 4, 5};
 
         MyThread6 mt1 = new MyThread6("Child #1", a);
         MyThread6 mt2 = new MyThread6("Child #2", a);

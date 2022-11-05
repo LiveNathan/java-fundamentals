@@ -4,7 +4,7 @@ package labs_examples.exception_handling.examples;
 class UseFinally {
     public static void genException(int what) {
         int t;
-        int nums[] = new int[2];
+        int[] nums = new int[2];
 
         System.out.println("Receiving " + what);
         try {
@@ -16,13 +16,13 @@ class UseFinally {
                     nums[4] = 4; // generate array index error.
                     break;
                 case 2:
-                    return; // return from try block
+                    // return from try block
             }
         }
         catch (ArithmeticException exc) {
             // catch the exception
             System.out.println("Can't divide by Zero!");
-            return; // return from catch
+            // return from catch
         }
         catch (ArrayIndexOutOfBoundsException exc) {
             // catch the exception
@@ -35,7 +35,7 @@ class UseFinally {
 }
 
 class FinallyDemo {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         for(int i=0; i < 3; i++) {
             UseFinally.genException(i);

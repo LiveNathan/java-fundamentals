@@ -14,7 +14,7 @@ class VarArgs {
         System.out.println();
     }
 
-    public static void main(String args[])
+    public static void main(String[] args)
     {
 
         // Notice how vaTest() can be called with a

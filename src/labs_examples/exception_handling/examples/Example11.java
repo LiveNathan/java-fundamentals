@@ -4,7 +4,7 @@ package labs_examples.exception_handling.examples;
 
 class ExcTest2 {
     static void genException() {
-        int nums[] = new int[4];
+        int[] nums = new int[4];
 
         System.out.println("Before exception is generated.");
 
@@ -15,7 +15,7 @@ class ExcTest2 {
 }
 
 class UseThrowableMethods {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         try {
             ExcTest2.genException();

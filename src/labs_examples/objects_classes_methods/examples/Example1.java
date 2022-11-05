@@ -7,12 +7,12 @@ package labs_examples.objects_classes_methods.examples;
 
 class Vehicle4 {
 
-    private double interestRate = .05;
+    private final double interestRate = .05;
 
     // notice that the variables below are private
-    private int passengers; // number of passengers
-    private int fuelcap;    // fuel capacity in gallons
-    private int mpg;        // fuel consumption in miles per gallon
+    private final int passengers; // number of passengers
+    private final int fuelcap;    // fuel capacity in gallons
+    private final int mpg;        // fuel consumption in miles per gallon
 
     Vehicle4(int passengers, int fuelcap, int mpg){
         this.passengers = passengers;
@@ -28,7 +28,7 @@ class Vehicle4 {
 
 // This class declares an object of type Vehicle.
 class VehicleDemo {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         int range;
 

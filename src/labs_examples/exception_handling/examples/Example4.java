@@ -2,8 +2,8 @@ package labs_examples.exception_handling.examples;
 
 // This won't work!
 class ExcTypeMismatch {
-    public static void main(String args[]) {
-        int nums[] = new int[4];
+    public static void main(String[] args) {
+        int[] nums = new int[4];
         int i = 0;
         int x = 2;
         int y = 0;
@@ -22,7 +22,7 @@ class ExcTypeMismatch {
        ArithmeticException. */
         catch (ArithmeticException exc) {
             // catch the exception
-            System.out.println("Arithmentic exception " + exc.toString());
+            System.out.println("Arithmentic exception " + exc);
         }
         catch (IndexOutOfBoundsException exc1){
             System.out.println("Index out-of-bounds!");

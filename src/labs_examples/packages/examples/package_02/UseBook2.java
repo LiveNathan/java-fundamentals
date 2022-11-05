@@ -4,8 +4,8 @@ import labs_examples.packages.examples.package_01.Book3;
 
 // Use the Book Class from package_01.
 class UseBook2 {
-    public static void main(String args[]) {
-        Book3 books[] = new Book3[5];
+    public static void main(String[] args) {
+        Book3[] books = new Book3[5];
 
         books[0] = new Book3("Java: A Beginner's Guide",
                 "Schildt", 2014);

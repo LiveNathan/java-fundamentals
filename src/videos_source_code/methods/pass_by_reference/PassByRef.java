@@ -11,11 +11,11 @@ public class PassByRef {
     public static void main(String[] args) {
         Person ryan = new Person(36, 75, "Ryan");
 
-        System.out.println(ryan.toString());
+        System.out.println(ryan);
 
         addYearToPerson(ryan);
 
-        System.out.println(ryan.toString());
+        System.out.println(ryan);
     }
 
     public static void addYearToPerson(Person person){

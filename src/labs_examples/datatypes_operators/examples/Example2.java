@@ -7,7 +7,7 @@ package labs_examples.datatypes_operators.examples;
    sides.
 */
 class Hypot {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         double x, y, z;
 
         x = 3;

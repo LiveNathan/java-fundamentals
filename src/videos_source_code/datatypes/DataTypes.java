@@ -18,7 +18,7 @@ public class DataTypes {
     int intNum = 1456474;
 
     // 64 bits of memory
-    long longNum = 456467475465464l;
+    long longNum = 456467475465464L;
 
     // 32 bits of memory
     float floatNum = 34.4567f;

@@ -16,7 +16,7 @@ public class Animal {
     private boolean liveBorn;
     private String sound;
 
-    public Animal(){};
+    public Animal(){}
 
     public boolean isHasFur() {
         return hasFur;

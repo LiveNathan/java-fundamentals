@@ -21,7 +21,7 @@ class Example {
 
         // OR
 
-        System.out.println(myCar.toString());
+        System.out.println(myCar);
 
     }
 

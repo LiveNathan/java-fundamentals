@@ -16,7 +16,7 @@ public class Demo {
 //        System.out.println("My kitchen has a " + myKitchen.getOven().getBrand() + " oven " +
 //                "with a max temp of " + myKitchen.getOven().getMaxTemp());
 
-        System.out.println(myKitchen.toString());
+        System.out.println(myKitchen);
 
     }
 

@@ -1,8 +1,8 @@
 package labs_examples.packages.examples.package_02;
 
 class ProtectDemo {
-    public static void main(String args[]) {
-        ExtBook books[] = new ExtBook[5];
+    public static void main(String[] args) {
+        ExtBook[] books = new ExtBook[5];
 
         books[0] = new ExtBook("Java: A Beginner's Guide",
                 "Schildt", 2014, "McGraw-Hill");

@@ -15,7 +15,7 @@ class VarArgs2 {
         System.out.println();
     }
 
-    public static void main(String args[])
+    public static void main(String[] args)
     {
         vaTest("One vararg: ", 10);
         vaTest("Three varargs: ", 1, 2, 3);

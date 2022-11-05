@@ -14,7 +14,7 @@ public class SelectionSort {
         }
     }
 
-    public static int[] selectionSort(int nums[]) {
+    public static int[] selectionSort(int[] nums) {
 
         // iterate over the length of the array (outer loop)
         // we'll use "i" to indicate what is already sorted - everything at or below

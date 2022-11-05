@@ -7,6 +7,6 @@ package labs_examples.lambdas.examples.functional_interfaces;
 public interface FunctionalInterfaceExample {
 
     // simple abstract method - SAM
-    public double calculate(double a, double b);
+    double calculate(double a, double b);
 
 }

@@ -6,5 +6,5 @@ package labs_examples.lambdas.examples.functional_interfaces;
 @FunctionalInterface
 public interface MyInterface {
 
-    public void someMethod();
+    void someMethod();
 }

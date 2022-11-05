@@ -7,7 +7,7 @@ package labs_examples.exception_handling.examples;
 
 // A fixed-size queue class for characters that uses exceptions.
 class FixedQueue implements ICharQ {
-    private static char q[]; // this array holds the queue
+    private static char[] q; // this array holds the queue
     private int putloc, getloc; // the put and get indices
 
     // Construct an empty queue given its size.

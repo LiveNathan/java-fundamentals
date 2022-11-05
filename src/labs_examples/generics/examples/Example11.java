@@ -30,8 +30,8 @@ class MyClass<T> implements Containment<T> {
 }
 
 class GenIFDemo {
-    public static void main(String args[]) {
-        Integer x[] = { 1, 2, 3 };
+    public static void main(String[] args) {
+        Integer[] x = { 1, 2, 3 };
 
         MyClass<Integer> ob = new MyClass<Integer>(x);
 

@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 /**
  * Conditions and Loops Exercise 1: Even or Odd
- *
- *      Write a program that gets a number between 1 and 1,000,000
- *      from the user and determines whether it is odd
- *      or even using an if statement. Print the result.
- *
- *      NOTE: We will be using the Scanner class to collect user input. This is demonstrated below.
+ * <p>
+ * Write a program that gets a number between 1 and 1,000,000
+ * from the user and determines whether it is odd
+ * or even using an if statement. Print the result.
+ * <p>
+ * NOTE: We will be using the Scanner class to collect user input. This is demonstrated below.
  */
 
 public class Exercise_01 {
@@ -24,6 +24,11 @@ public class Exercise_01 {
         int number = scanner.nextInt();
 
         // write completed code here
+        if (number % 2 == 0) {
+            System.out.printf("%d is an even number", number);
+        } else {
+            System.out.printf("%d is an odd number", number);
+        }
 
     }
 }

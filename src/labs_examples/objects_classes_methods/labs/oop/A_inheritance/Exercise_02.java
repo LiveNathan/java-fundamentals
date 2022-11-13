@@ -2,15 +2,14 @@ package labs_examples.objects_classes_methods.labs.oop.A_inheritance;
 
 /**
  * Run the class below and study the output. What prints and why?
- *
- * Your answer:
- *
+ * <p>
+ * Your answer: 10, inheritance
  */
 class A {
     int i = 10;
 }
 
-class B extends A{
+class B extends A {
     int i = 20;
 }
 

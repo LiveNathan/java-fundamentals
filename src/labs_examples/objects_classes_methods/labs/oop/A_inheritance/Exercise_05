@@ -1,6 +1,8 @@
 
 Without running the code below, please tell me what will print. Why?
-
+Parent called
+Child called
+Parent always gets called first.
 
 
 

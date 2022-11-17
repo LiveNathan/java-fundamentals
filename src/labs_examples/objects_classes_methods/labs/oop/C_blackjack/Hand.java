@@ -34,4 +34,5 @@ public class Hand {
     public void setHandValue(int handValue) {
         this.handValue = handValue;
     }
+
 }

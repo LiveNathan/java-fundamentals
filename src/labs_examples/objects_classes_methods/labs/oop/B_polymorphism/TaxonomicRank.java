@@ -91,12 +91,6 @@ class Phylum extends Kingdom {
     }
 }
 
-public interface Creation {
-    public void createLife();
-
-    public void sleep();
-}
-
 class polymorphExample{
     Creation myCreation;
 

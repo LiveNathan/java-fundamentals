@@ -4,7 +4,7 @@ public class ex4test {
     public static void main(String[] args)
     {
         Parent2 c = new Child2();
-        c.doSomething();
+//        c.doSomething();
     }
 }
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class BlackjackController implements CardGame {
+public class BlackjackController {
     public static void main(String[] args) {
 //The player whose hand value is closest to 21 without going over at the end of the game will win.
 // It will not ask for bets. The user and the computer will each start with a small pot and bets will be taken automatically.
@@ -24,21 +24,21 @@ public class BlackjackController implements CardGame {
         } while (true);
     }
 
-    private void deal(Player player, Deck deck) {
+    private static void deal(Player player, Deck deck) {
         int randomCard = getRandomCard(deck);
         Card card = deck.getCardAt(randomCard);
         ArrayList<Card> cards = new ArrayList<>();
         cards.add(card);
         Hand hand = new Hand(cards);
         player.setHand(hand);
-        System.out.printf("Your card is %s.", player.getHand());
+        System.out.printf("Your card is %s.", player.getHand().toString());
     }
 
-    private int getRandomCard(Deck deck) {
+    private static int getRandomCard(Deck deck) {
         Random random = new Random();
         int n = random.nextInt(51);
         while (deck.isCardUsed(n)){
-            int n = random.nextInt(51);
+            n = random.nextInt(51);
         }
         deck.getUsedCards().add(n);
         return n;

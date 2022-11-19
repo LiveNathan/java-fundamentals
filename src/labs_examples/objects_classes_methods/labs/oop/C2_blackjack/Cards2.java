@@ -49,6 +49,14 @@ public class Cards2 {
         this.cardValue = cardValue;
     }
 
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
+    }
+
     @Override
     public String toString() {
         return "cardIndex=" + cardIndex +

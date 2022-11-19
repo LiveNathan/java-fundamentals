@@ -66,10 +66,12 @@ public class Deck2 {
 
         // Update hand value
         player1.setPlayersCardsValue(nextCardsPlayer.get(0).getCardValue() + nextCardsPlayer.get(1).getCardValue());
-        dealer.setPlayersCardsValue(nextCardsPlayer.get(0).getCardValue() + nextCardsPlayer.get(1).getCardValue());
+        player1.calculateHandValue(player1);
+        dealer.setPlayersCardsValue(nextCardsDealer.get(0).getCardValue() + nextCardsDealer.get(1).getCardValue());
+        dealer.calculateHandValue(dealer);
 
         // Print results
-        System.out.printf("Nathan has: %s, %s. (value: %d)", nextCardsPlayer.get(0).customToString(), nextCardsPlayer.get(1).customToString(), player1.getPlayersCardsValue());
+        System.out.printf("%s has: %s, %s. (value: %d)", player1.getPlayerName(), nextCardsPlayer.get(0).customToString(), nextCardsPlayer.get(1).customToString(), player1.getPlayersCardsValue());
         System.out.printf("%nDealer has: %s, <face down>", nextCardsDealer.get(0).customToString());
     }
 
@@ -84,9 +86,10 @@ public class Deck2 {
 
         // Update hand value
         player.setPlayersCardsValue(player.getPlayersCardsValue() + nextCard.getCardValue());
+        player.calculateHandValue(player);
 
         // Print results
-        System.out.printf("%n%s now has: ", player.getPlayerName());
+        System.out.printf("%s now has: ", player.getPlayerName());
         for (Cards2 card : playersCards) {
             System.out.printf("%s, ", card.customToString());
         }

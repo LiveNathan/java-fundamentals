@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: labs_examples.objects_classes_methods.labs.oop.C2_blackjack.
+ BlackjackController2
+

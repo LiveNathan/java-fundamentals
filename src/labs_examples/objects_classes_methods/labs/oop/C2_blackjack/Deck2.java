@@ -50,29 +50,22 @@ public class Deck2 {
     }
 
     public void dealFirstTwoCards(Players player1, Players dealer) {
-        // Create temporary arrayLists to store the cards
-        ArrayList<Cards2> nextCardsPlayer = new ArrayList<>();
-        ArrayList<Cards2> nextCardsDealer = new ArrayList<>();
 
-        // Deal the cards, starting with the player
-        nextCardsPlayer.add(deckOfCards[getNextCardIndex()]);
-        nextCardsDealer.add(deckOfCards[getNextCardIndex()]);
-        nextCardsPlayer.add(deckOfCards[getNextCardIndex()]);
-        nextCardsDealer.add(deckOfCards[getNextCardIndex()]);
-
-        // Add those cards to the Player's hands
-        player1.setPlayersCards(nextCardsPlayer);
-        dealer.setPlayersCards(nextCardsDealer);
+        // Add new cards to the Player's hands
+        player1.getPlayersCards().clear();
+        Collections.addAll(player1.getPlayersCards(), deckOfCards[getNextCardIndex()], deckOfCards[getNextCardIndex()]);
+        dealer.getPlayersCards().clear();
+        Collections.addAll(dealer.getPlayersCards(), deckOfCards[getNextCardIndex()], deckOfCards[getNextCardIndex()]);
 
         // Update hand value
-        player1.setPlayersCardsValue(nextCardsPlayer.get(0).getCardValue() + nextCardsPlayer.get(1).getCardValue());
+//        player1.setPlayersCardsValue(player1.getPlayersCards().get(0).getCardValue() + player1.getPlayersCards().get(1).getCardValue());
         player1.calculateHandValue(player1);
-        dealer.setPlayersCardsValue(nextCardsDealer.get(0).getCardValue() + nextCardsDealer.get(1).getCardValue());
+//        dealer.setPlayersCardsValue(dealer.getPlayersCards().get(0).getCardValue() + dealer.getPlayersCards().get(1).getCardValue());
         dealer.calculateHandValue(dealer);
 
         // Print results
-        System.out.printf("%s has: %s, %s. (value: %d)", player1.getPlayerName(), nextCardsPlayer.get(0).customToString(), nextCardsPlayer.get(1).customToString(), player1.getPlayersCardsValue());
-        System.out.printf("%nDealer has: %s, <face down>", nextCardsDealer.get(0).customToString());
+        System.out.printf("%s has: %s, %s. (value: %d)", player1.getPlayerName(), player1.getPlayersCards().get(0).customToString(), player1.getPlayersCards().get(1).customToString(), player1.getPlayersCardsValue());
+        System.out.printf("%nDealer has: %s, <face down>", dealer.getPlayersCards().get(0).customToString());
     }
 
     public void dealOneCard(Players player) {
@@ -80,9 +73,7 @@ public class Deck2 {
         Cards2 nextCard = deckOfCards[getNextCardIndex()];
 
         // Add card to player's hand
-        ArrayList<Cards2> playersCards = player.getPlayersCards();
-        playersCards.add(nextCard);
-        player.setPlayersCards(playersCards);
+        player.getPlayersCards().add(nextCard);
 
         // Update hand value
         player.setPlayersCardsValue(player.getPlayersCardsValue() + nextCard.getCardValue());
@@ -90,7 +81,7 @@ public class Deck2 {
 
         // Print results
         System.out.printf("%s now has: ", player.getPlayerName());
-        for (Cards2 card : playersCards) {
+        for (Cards2 card : player.getPlayersCards()) {
             System.out.printf("%s, ", card.customToString());
         }
         System.out.printf("(value: %d)", player.getPlayersCardsValue());

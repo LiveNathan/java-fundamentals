@@ -192,13 +192,14 @@ public class Players {
         }
 
         // Calculate hand value
-        if (player.getPlayersCardsValue() > 21 & numberOfAces > 0) {  // If there are any Aces, need to change value.
-            int handValue = 0;
-            for (Cards2 playersCard : playersCards) {
-                handValue += playersCard.getCardValue();  // Recalculate the score each time for accuracy.
-            }
-            handValue -= (numberOfAces * 10);  // Subtract 10 to turn Ace value into 1.
-            player.setPlayersCardsValue(handValue);
+        // If there are any Aces, need to change value.
+        int handValue = 0;
+        for (Cards2 playersCard : playersCards) {
+            handValue += playersCard.getCardValue();  // Recalculate the score each time for accuracy.
         }
+        if (player.getPlayersCardsValue() > 21 & numberOfAces > 0) {
+            handValue -= (numberOfAces * 10);  // Subtract 10 to turn Ace value into 1.
+        }
+        player.setPlayersCardsValue(handValue);
     }
 }

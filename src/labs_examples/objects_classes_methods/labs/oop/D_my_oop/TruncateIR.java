@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -27,11 +28,6 @@ public class TruncateIR {
             throw new RuntimeException(e);
         }
 
-        Wav objRead1 = new Wav();
-        objRead1.readWav(inputFilename);
-        Hashtable<String, Long> propsOut = objRead1.getProperties(); // Gets the WAV file properties
-        double[][] signal = objRead1.getData("int"); // Can be 'int', 'long' 'double'
-
         // Get Sample Rate
         AudioInputStream audioInputStream;
         try {
@@ -51,7 +47,7 @@ public class TruncateIR {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        byte[] IRByteArray = new byte[(int) audioInputStream.getFrameLength() * audioFormat.getFrameSize()];
+        byte[] IRByteArray = new byte[audioBytesAvailable];
         int numBytesRead = 0;
         try {
             numBytesRead = audioInputStream.read(IRByteArray);
@@ -98,9 +94,9 @@ public class TruncateIR {
         System.out.printf("%nThe max value of the arrayList is %f and min is %f", Collections.max(IRnormalizedList), Collections.min(IRnormalizedList));
         System.out.printf("%nThe value at index zero: %f", IRnormalized[0]);
 
-        // Find start and end
-        double IRstartThresholdVal = 0.5;  // start threshold, min value
-        int numberOfContinuousSamplesBelowThreshold = 50;  // how many samples need to be below the min value?
+        // Find start
+        double IRstartThresholdVal = 0.1;  // start threshold, min value
+        int numberOfContinuousSamplesBelowThreshold = 100;  // how many samples need to be below the min value?
         // find first continuous series of samples below threshold
         int IRstartIndex = 0;
         for (int i = IRmaxIndex; i > -1 + numberOfContinuousSamplesBelowThreshold; i--) {
@@ -120,18 +116,55 @@ public class TruncateIR {
         }
         System.out.printf("%nIR start index: %d", IRstartIndex);
 
-        // Plot
-        // Save
-    }
-
-    private static boolean URLisValid(String iRurl) {
-        try {
-            URL url = new URL(iRurl);
-            url.toURI();
-            return true;
-        } catch (MalformedURLException | URISyntaxException e) {
-            return false;
+        // Find end
+        int IRendIndex = 0;
+        for (int i = IRmaxIndex; i < IRnormalized.length; i++) {
+            double[] slicedArray = Arrays.copyOfRange(IRnormalized, i, i + numberOfContinuousSamplesBelowThreshold); // Slice array
+            // find max value
+            double slicedArrayMaxVal = slicedArray[0];
+            for (int j = 1; j < slicedArray.length; j++) {
+                if (Math.abs(slicedArray[j]) > slicedArrayMaxVal) {
+                    slicedArrayMaxVal = Math.abs(slicedArray[j]);
+                }
+            }
+//            System.out.print(slicedArrayMaxVal + ", ");
+            if (slicedArrayMaxVal <= IRstartThresholdVal) {
+                IRendIndex = i;
+                break;
+            }
         }
-    }
+        System.out.printf("%nIR end index: %d", IRendIndex);
 
+        // Write new truncated array
+        double[] IRnormalizedTruncated = Arrays.copyOfRange(IRnormalized, IRstartIndex, IRendIndex);
+
+        // Plot
+        // Write to file
+        FileWriter writer = null;
+        String fileName = "/Users/nathanlively/Downloads/truncatedIR.CSV";
+        try {
+            writer = new FileWriter(fileName);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        for (double v : IRnormalizedTruncated) {
+            try {
+                writer.append(String.valueOf(v));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                writer.append("\n");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        try {
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

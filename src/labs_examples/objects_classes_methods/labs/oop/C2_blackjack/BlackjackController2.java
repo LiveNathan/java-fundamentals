@@ -41,13 +41,14 @@ public class BlackjackController2 {
             }
 
             // Handle split player
+            Players player1SplitHand = null;
             if (player1.isEnableSplitPlayer()) {
                 // Make a new player called Players Split Hand with matched bet amount and card
                 String splitPlayerName = player1.getPlayerName() + "'s Split";   // New Name
                 ArrayList<Cards2> splitHand = new ArrayList<>();  // Temp array list
                 splitHand.add(player1.getPlayersCards().get(0));  // Add the split card
                 int splitPlayerChips = (int) (player1.getPlayersChips() - player1.getPlayersCurrentBet()); // Give the split player chips
-                Players player1SplitHand = new Players(splitPlayerName, splitHand, splitPlayerChips, player1.getPlayersCurrentBet());  // Create player
+                player1SplitHand = new Players(splitPlayerName, splitHand, splitPlayerChips, player1.getPlayersCurrentBet());  // Create player
                 player1SplitHand.setEnableSplitPlayer(true);  // Make sure they won't be offered to split in next line.
                 player1SplitHand.hitStandSplitDoubleDown(deck2);
             }
@@ -78,6 +79,27 @@ public class BlackjackController2 {
                 System.out.println("%nNo winner.");
             }
             System.out.printf("%n%s you have %d worth of chips.", player1.getPlayerName(), player1.getPlayersChips());
+            if (player1.isEnableSplitPlayer()){
+                if (player1SplitHand.getPlayersCardsValue() == dealer.getPlayersCardsValue()) {
+                    System.out.println("\nPush. No winner.");
+                } else if (player1SplitHand.getPlayersCardsValue() > dealer.getPlayersCardsValue() & player1SplitHand.getPlayersCardsValue() < 22) {
+                    System.out.printf("%n%s wins!", player1SplitHand.getPlayerName());
+                    if (player1SplitHand.getPlayersCardsValue() == 21) {
+                        player1.setPlayersChips((int) (player1.getPlayersChips() + Math.round(player1SplitHand.getPlayersCurrentBet() * 1.5)));
+                    } else {
+                        player1.setPlayersChips(player1.getPlayersChips() + player1SplitHand.getPlayersCurrentBet());
+                    }
+                } else if (dealer.getPlayersCardsValue() > 21 & player1SplitHand.getPlayersCardsValue() < 22) {
+                    System.out.printf("%n%s wins!", player1SplitHand.getPlayerName());
+                    player1.setPlayersChips(player1.getPlayersChips() + player1SplitHand.getPlayersCurrentBet());
+                } else if (dealer.getPlayersCardsValue() < 22) {
+                    System.out.printf("%nDealer wins!");
+                    player1.setPlayersChips(player1.getPlayersChips() - player1SplitHand.getPlayersCurrentBet());
+                } else {
+                    System.out.println("%nNo winner.");
+                }
+                System.out.printf("%n%s you have %d worth of chips.", player1.getPlayerName(), player1.getPlayersChips());
+            }
 
             // Play again?
             Scanner scanner = new Scanner(System.in);

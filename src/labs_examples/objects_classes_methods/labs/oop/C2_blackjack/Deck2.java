@@ -6,6 +6,7 @@ public class Deck2 {
     // Instance variables
     private Cards2[] deckOfCards = new Cards2[52];  // every time Deck2 is called, it builds a new array of Cards.
     private int nextCardIndex = -1;
+    private static int numberOfGamesPlayed = 0;
 
     // Constructors
     public Deck2() {
@@ -19,14 +20,20 @@ public class Deck2 {
     }
 
     // Getters & setters
-
-
     public Cards2[] getDeckOfCards() {
         return deckOfCards;
     }
 
     public void setDeckOfCards(Cards2[] deckOfCards) {
         this.deckOfCards = deckOfCards;
+    }
+
+    public static int getNumberOfGamesPlayed() {
+        return numberOfGamesPlayed;
+    }
+
+    public static void setNumberOfGamesPlayed(int numberOfGamesPlayed) {
+        Deck2.numberOfGamesPlayed = numberOfGamesPlayed;
     }
 
     // Other methods
@@ -42,6 +49,7 @@ public class Deck2 {
         List<Cards2> cards2List = Arrays.asList(deckOfCards);
         Collections.shuffle(cards2List);
         cards2List.toArray(deckOfCards);
+        numberOfGamesPlayed++;
     }
 
     public int getNextCardIndex() {

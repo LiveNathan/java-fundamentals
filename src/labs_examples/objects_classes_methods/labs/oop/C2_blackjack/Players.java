@@ -12,6 +12,7 @@ public class Players {
     private int playersChips;
     private int playersCurrentBet;
     private boolean enableSplitPlayer = false;
+    private int gamesWon = 0;
 
     // Constructors
     public Players() {
@@ -81,6 +82,14 @@ public class Players {
 
     public void setEnableSplitPlayer(boolean enableSplitPlayer) {
         this.enableSplitPlayer = enableSplitPlayer;
+    }
+
+    public int getGamesWon() {
+        return gamesWon;
+    }
+
+    public void setGamesWon(int gamesWon) {
+        this.gamesWon = gamesWon;
     }
 
     // Other methods
@@ -172,6 +181,9 @@ public class Players {
                 e.printStackTrace();
             }
         } while (true);
+    }
+    public void WinnerWinner() {
+        gamesWon++;
     }
 
     @Override

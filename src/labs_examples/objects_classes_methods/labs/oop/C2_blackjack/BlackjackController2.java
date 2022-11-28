@@ -33,8 +33,10 @@ public class BlackjackController2 {
             // Check score
             if (player1.getPlayersCardsValue() == 21 & dealer.getPlayersCardsValue() != 21) {
                 System.out.printf("%nYou won %s!", player1.getPlayerName());
+                player1.WinnerWinner();
             } else if (dealer.getPlayersCardsValue() == 21) {
                 System.out.printf("%nDealer has blackjack. Dealer wins!");
+                dealer.WinnerWinner();
             } else {
                 // Player hit, stand, split, double down
                 player1.hitStandSplitDoubleDown(deck2);
@@ -64,6 +66,7 @@ public class BlackjackController2 {
                 System.out.println("\nPush. No winner.");
             } else if (player1.getPlayersCardsValue() > dealer.getPlayersCardsValue() & player1.getPlayersCardsValue() < 22) {
                 System.out.printf("%n%s wins!", player1.getPlayerName());
+                player1.WinnerWinner();
                 if (player1.getPlayersCardsValue() == 21) {
                     player1.setPlayersChips((int) (player1.getPlayersChips() + Math.round(player1.getPlayersCurrentBet() * 1.5)));
                 } else {
@@ -71,9 +74,11 @@ public class BlackjackController2 {
                 }
             } else if (dealer.getPlayersCardsValue() > 21 & player1.getPlayersCardsValue() < 22) {
                 System.out.printf("%n%s wins!", player1.getPlayerName());
+                player1.WinnerWinner();
                 player1.setPlayersChips(player1.getPlayersChips() + player1.getPlayersCurrentBet());
             } else if (dealer.getPlayersCardsValue() < 22) {
                 System.out.printf("%nDealer wins!");
+                dealer.WinnerWinner();
                 player1.setPlayersChips(player1.getPlayersChips() - player1.getPlayersCurrentBet());
             } else {
                 System.out.println("%nNo winner.");
@@ -84,6 +89,7 @@ public class BlackjackController2 {
                     System.out.println("\nPush. No winner.");
                 } else if (player1SplitHand.getPlayersCardsValue() > dealer.getPlayersCardsValue() & player1SplitHand.getPlayersCardsValue() < 22) {
                     System.out.printf("%n%s wins!", player1SplitHand.getPlayerName());
+                    player1.WinnerWinner();
                     if (player1SplitHand.getPlayersCardsValue() == 21) {
                         player1.setPlayersChips((int) (player1.getPlayersChips() + Math.round(player1SplitHand.getPlayersCurrentBet() * 1.5)));
                     } else {
@@ -91,15 +97,20 @@ public class BlackjackController2 {
                     }
                 } else if (dealer.getPlayersCardsValue() > 21 & player1SplitHand.getPlayersCardsValue() < 22) {
                     System.out.printf("%n%s wins!", player1SplitHand.getPlayerName());
+                    player1.WinnerWinner();
                     player1.setPlayersChips(player1.getPlayersChips() + player1SplitHand.getPlayersCurrentBet());
                 } else if (dealer.getPlayersCardsValue() < 22) {
                     System.out.printf("%nDealer wins!");
+                    dealer.WinnerWinner();
                     player1.setPlayersChips(player1.getPlayersChips() - player1SplitHand.getPlayersCurrentBet());
                 } else {
                     System.out.println("%nNo winner.");
                 }
                 System.out.printf("%n%s you have %d worth of chips.", player1.getPlayerName(), player1.getPlayersChips());
             }
+
+            // Report stats
+            System.out.printf("%nAfter %d games %s has won %d and the Dealer has won %d.", Deck2.getNumberOfGamesPlayed(), player1.getPlayerName(), player1.getGamesWon(), dealer.getGamesWon());
 
             // Play again?
             Scanner scanner = new Scanner(System.in);

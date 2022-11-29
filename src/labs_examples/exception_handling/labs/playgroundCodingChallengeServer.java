@@ -7,11 +7,11 @@ class Server {
 
     public void download(String url) {
         //Surround with try catch
-        try {
-            Connection.getResource(url);
-        } catch (HTTPException httpExceptions) {
-            System.out.println(httpExceptions.toString());
-        }
+//        try {
+//            Connection.getResource(url);
+//        } catch (HTTPException httpExceptions) {
+//            System.out.println(httpExceptions.toString());
+//        }
 
     }
 }

@@ -19,6 +19,7 @@ public class Exercise_04 {
         // Open URL
         String urlPath = "https://s3.amazonaws.com/appforest_uf/f1667322342818x729157300971330400/SRM215%20Silver%203.txt";
         URL url;
+        // URL encoder
         try {
             url = new URL(urlPath);
         } catch (MalformedURLException e) {

@@ -110,7 +110,7 @@ public class BlackjackController2 {
             }
 
             // Report stats
-            System.out.printf("%nAfter %d games %s has won %d and the Dealer has won %d.", Deck2.getNumberOfGamesPlayed(), player1.getPlayerName(), player1.getGamesWon(), dealer.getGamesWon());
+            System.out.printf("%nAfter %d game(s) %s has won %d and the Dealer has won %d.", Deck2.getNumberOfGamesPlayed(), player1.getPlayerName(), player1.getGamesWon(), dealer.getGamesWon());
 
             // Play again?
             Scanner scanner = new Scanner(System.in);

@@ -209,8 +209,9 @@ public class Players {
         for (Cards2 playersCard : playersCards) {
             handValue += playersCard.getCardValue();  // Recalculate the score each time for accuracy.
         }
-        if (player.getPlayersCardsValue() > 21 & numberOfAces > 0) {
-            handValue -= (numberOfAces * 10);  // Subtract 10 to turn Ace value into 1.
+        while (handValue > 21 & numberOfAces > 0) {  // While hand value is greater than 21 and there are aces in the hand.
+            handValue -= 10;  // Subtract 10 to turn Ace value into 1.
+            numberOfAces--;  // 1 Aces has been handled.
         }
         player.setPlayersCardsValue(handValue);
     }

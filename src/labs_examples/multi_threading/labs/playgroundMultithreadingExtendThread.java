@@ -1,7 +1,7 @@
 package labs_examples.multi_threading.labs;
 
 class playgroundMultithreadingExtendThread extends Thread {
-    MultiThreading() {
+    playgroundMultithreadingExtendThread() {
         super("thread1");
         start();
     }

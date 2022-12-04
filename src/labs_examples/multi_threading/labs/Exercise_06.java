@@ -8,95 +8,84 @@ package labs_examples.multi_threading.labs;
 
 public class Exercise_06 {
     public static void main(String[] args) {
+        // Create objects
         KeepCount keepCount = new KeepCount();
-        CountUp1 countUp1 = new CountUp1();
-        CountUp2 countUp2 = new CountUp2();
-        Thread thread1 = new Thread(countUp1, "thread1");
-        Thread thread2 = new Thread(countUp2, "thread2");
-        thread1.start();
-        thread2.start();
+        CountUp thread1 = new CountUp("A", keepCount);
+        CountUp thread2 = new CountUp("B", keepCount);
+
+        // Let thread 1 and 2 finish
         try {
-            thread1.join();
-            thread2.join();
-        } catch (InterruptedException e) {
+            thread1.thread.join();
+            thread2.thread.join();
+        } catch (InterruptedException exc) {
             System.out.println("Main thread interrupted.");
         }
     }
 }
 
 class KeepCount {
-    private static int count = 0;
-    private boolean count2canGo;
+    Boolean count1isDone; // contains the state of the counting
+    static int count = 0;
 
-    // Getters and Setters
-    public static int getCount() {
-        return count;
-    }
-
-    public static void setCount(int count) {
-        KeepCount.count = count;
-    }
-
-    // Other methods
-    public synchronized void CountUp1(boolean running) {
-        if (!running) {
-            count2canGo = true;
-            notify();
+    synchronized void CountA(boolean running) {
+        if (!running) { // stop the counting
+            count1isDone = true;
+            notify(); // notify any waiting threads
             return;
         }
         count++;
-        System.out.println(Thread.currentThread().getName() + " counts " + count);
-        count2canGo = true;
-        notify();  // Let CountUp2() run
+        System.out.println("Thread " + Thread.currentThread().getName() + " counts " + count + ". ");
+        count1isDone = true; // set the current state to done
+        notify(); // let CountB() run
         try {
-            while (count2canGo) {
-                wait();  // Wait for countUp2 to complete
-            }
-        } catch (InterruptedException e) {
+            while (count1isDone)
+                wait(); // wait for CountB() to complete
+        } catch (InterruptedException exc) {
             System.out.println("Thread interrupted.");
         }
     }
 
-    public synchronized void CountUp2(boolean running) {
+    synchronized void CountB(boolean running) {
         if (!running) {
-            count2canGo = true;
+            count1isDone = false;
             notify();
             return;
         }
         count++;
-        System.out.println(Thread.currentThread().getName() + " counts " + count);
-        count2canGo = false;
-        notify();  // Let CountUp1() run
+        System.out.println("Thread " + Thread.currentThread().getName() + " counts " + count + ". ");
+        count1isDone = false; // set the current state to not done
+        notify(); // let CountA() run
         try {
-            while (!count2canGo) {
-                wait();  // Wait for countUp1 to complete
-            }
-        } catch (InterruptedException e) {
+            while (!count1isDone)
+                wait(); // wait for CountA to complete
+        } catch (InterruptedException exc) {
             System.out.println("Thread interrupted.");
         }
     }
 }
 
-class CountUp1 implements Runnable {
-    KeepCount keepCountRunnable = new KeepCount();
+class CountUp implements Runnable {
+    Thread thread;
+    KeepCount keepCount;
 
-    @Override
-    public void run() {
-        while (KeepCount.getCount() < 100) {
-            keepCountRunnable.CountUp1(true);
-        }
-        keepCountRunnable.CountUp1(false);
+    // Construct a new thread.
+    CountUp(String name, KeepCount keepCount) {
+        thread = new Thread(this, name);
+        this.keepCount = keepCount;
+        thread.start(); // start the thread
     }
-}
 
-class CountUp2 implements Runnable {
-    KeepCount keepCountRunnable = new KeepCount();
-
-    @Override
+    // Begin execution of new thread.
     public void run() {
-        while (KeepCount.getCount() < 100) {
-            keepCountRunnable.CountUp2(true);
+        if (thread.getName().compareTo("A") == 0) {
+            for (int i = 0; i < 50; i++) {
+                keepCount.CountA(true);
+            }
+            keepCount.CountA(false);
+        } else {
+            for (int i = 0; i < 50; i++)
+                keepCount.CountB(true);
+            keepCount.CountB(false);
         }
-        keepCountRunnable.CountUp2(false);
     }
 }

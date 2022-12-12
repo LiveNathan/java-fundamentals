@@ -1,15 +1,20 @@
 package labs_examples.lambdas.labs;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.OptionalDouble;
+import java.util.function.Supplier;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-/**
- * Lambdas Exercise 4:
- *
+/* Lambdas Exercise 4:
  *      Stream API Labs
- *
  *      1) Demonstrate the use of the range function to print out the numbers 1 through 15 (inclusive)
  *      2) Demonstrate the use of the sum function to determine the range of a set of numbers.
  *      3) Demonstrate the use of the map() function to alter each int in a List of Integers, then use the sum function
@@ -25,9 +30,50 @@ import java.util.stream.Stream;
  *      9) Demonstrate the anyMatch() function.
  *      10) Demonstrate the allMatch() function.
  *      11) Demonstrate the collect() terminal operation to store resulting values into a List
- *      
  */
 
-class Example {
-    
+public class Exercise_04 {
+    public static void main(String[] args) {
+        // 4.1
+        IntStream
+                .range(1, 16)
+                .forEach(System.out::print);
+        System.out.println();
+
+        // 4.2
+        int sum = IntStream.range(1, 100).sum();
+        System.out.println(sum);
+
+        // 4.3
+        double sum2 = IntStream.range(1, 101)  // Create a Stream of a range of integers
+                .mapToDouble(Math::sqrt)  // Convert the integers to double and use a method reference to find the square root of each
+                .sum();  // Sum all elements
+        System.out.println(sum2);
+
+        // 4.4
+        double average = IntStream.range(1, 101)
+                .filter(x -> x > 9)  // filter in everything greater than 9
+                .average()
+                .orElse(0);  // This seems to be required to account for a possible empty stream.
+//                .orElseThrow();  // Some exception for a catch block "The stream was empty, no average"
+        System.out.println(average);
+
+        // 4.5
+        int sum3 = IntStream.range(1, 101)
+                .reduce(0, Integer::sum);
+        System.out.println(sum3);
+
+        // 4.6
+        String filePath = "/Users/nathanlively/Downloads/SRM215 Silver 3 (1).txt";
+        Stream<String> TF = null;
+        try {
+            TF = Files.lines(Paths.get(filePath));  // returns a stream of strings
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        TF.forEach(System.out::println);  // Print each element
+        TF.close();  // Close the connection to the file
+
+        // 4.7
+    }
 }

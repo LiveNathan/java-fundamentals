@@ -1,17 +1,17 @@
 package labs_examples.lambdas.labs;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.OptionalDouble;
-import java.util.function.Supplier;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 /* Lambdas Exercise 4:
  *      Stream API Labs
@@ -75,5 +75,50 @@ public class Exercise_04 {
         TF.close();  // Close the connection to the file
 
         // 4.7
+        String dataFile = "/Users/nathanlively/Documents/CodingNomads/labs/online-java-fundamentals/src/labs_examples/lambdas/labs/stream_text_lab.csv";
+        Stream<String> rows = null;
+        try {
+            rows = Files.lines(Paths.get(dataFile));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        rows
+                .map(x -> x.split(","))  // Call String.split() on comma - returns array of values
+                .forEach(x -> System.out.println(x[1]));  // Print index 1
+        rows.close();  //close file connection
+
+        // 4.8 sum of all elements at index 2
+        Stream<String> rows2 = null;
+        try {
+            rows2 = Files.lines(Paths.get(dataFile));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Double sum4 = rows2
+                .map(x -> x.split(",")[2])
+                .mapToDouble(Double::parseDouble)
+                .sum();
+        System.out.println(sum4);
+        rows2.close();  //close file connection
+
+        // 4.9 anyMatch()
+        Stream<String> streamOfUsers = Stream.of("Nathan", "Elis", "Choco", "Taco", "Lucas");
+        boolean userAlreadyExists = streamOfUsers.anyMatch(string -> string.equals("Taco"));
+        System.out.println("User Courtney already exists: " + userAlreadyExists);
+
+        // 4.10 allMatch()
+        Stream<String> streamOfUsers2 = Stream.of("Nathan", "Elis", "Choco", "Taco", "Lucas");
+        boolean allWordsAreCapitalized = streamOfUsers2.allMatch(string -> Character.isUpperCase(string.charAt(0)));
+        System.out.println("All of the words are capitalized: " + allWordsAreCapitalized);
+
+        // 4.11 collect()
+        List<Integer> integerList = IntStream.range(1, 101)
+                .filter(x -> x % 3 == 0)
+                .collect(toList());
+
+        List<Integer> integerList1 = Arrays.asList(1, 2, 3, 4);
+        List<Integer> integerList2 = integerList1.stream().collect(toList());
+
     }
 }

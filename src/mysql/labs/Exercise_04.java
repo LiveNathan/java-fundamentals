@@ -41,7 +41,7 @@ public class Exercise_04 {
         // Set up the connection with the DB
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost/air_travel?" +
-                    "user=root&password=PASSWORD&useSSL=false");
+                    "user=root&password=" + System.getenv("PASSWORD") +"&useSSL=false");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

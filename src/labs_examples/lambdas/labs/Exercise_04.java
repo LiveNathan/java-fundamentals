@@ -115,10 +115,8 @@ public class Exercise_04 {
         // 4.11 collect()
         List<Integer> integerList = IntStream.range(1, 101)
                 .filter(x -> x % 3 == 0)
-                .collect(toList());
-
-        List<Integer> integerList1 = Arrays.asList(1, 2, 3, 4);
-        List<Integer> integerList2 = integerList1.stream().collect(toList());
-
+                .boxed()
+                .collect(Collectors.toList());
+        System.out.println(integerList);
     }
 }

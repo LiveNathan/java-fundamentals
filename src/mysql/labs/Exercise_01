@@ -15,6 +15,8 @@
  *          a. id (auto increment)
  *          b. student_id
  *          c. teacher_id
+ I created this, but then later dropped it since it is data duplication. Students can be connected with teachers by the courses table.
+
  *
  *      4.) Create a new table "teachers" with the following fields:
  *          a. id (auto increment)
@@ -29,13 +31,47 @@
  *
  *      7.) Write queries (and paste them below) for each of the following tasks:
  *          a. select all students
+ SELECT * FROM university.students;
+
  *          b. select all teacher who teach "Math" (choose a subject you included)
+ SELECT * FROM university.teachers WHERE university.teachers.subject=3;
+
  *          c. use a join query to select all students with a certain teacher
+USE university;
+SELECT s.first_name
+FROM students s
+JOIN students_courses sc
+ON s.student_id = sc.student_id
+JOIN courses
+ON sc.course_id = courses.id
+JOIN teachers
+ON courses.id = teachers.subject
+WHERE teachers.last_name = "Adams";
+
  *          d. use a join query to select all students with taking a certain subject
+ USE university;
+ SELECT s.first_name, s.last_name
+ FROM students s
+ JOIN students_courses sc
+ ON s.student_id = sc.student_id
+ JOIN courses
+ ON sc.course_id = courses.id
+ WHERE courses.name = "geology";
+
  *          e. update a record in the student table
+ USE university;
+ UPDATE students
+ SET age = 37
+ WHERE student_id = 4;
+
  *          f. add a record to the teacher table
+USE university;
+INSERT INTO teachers (first_name, last_name, subject)
+VALUES ("Achsah", "Rogerson", 3);
+
  *
  *       8.) Export the schema to a dump file and copy it to this folder.
+university_schema (no data, just schema)
  *
  *
  */

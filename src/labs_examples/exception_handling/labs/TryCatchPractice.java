@@ -18,11 +18,7 @@ public class TryCatchPractice {
         } catch (ArrayIndexOutOfBoundsException exc) {
             System.out.println("Error detected. Sorry bout that!");
         }
-        try {
-            int a = nums[0] / 0;
-        } catch (ArithmeticException exception){
-            System.out.println("You can't divide by zero.");
-        }
+        int a = nums[0] / 0;
         System.out.println("Program complete");
     }
 }

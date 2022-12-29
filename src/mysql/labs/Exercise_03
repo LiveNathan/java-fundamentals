@@ -5,15 +5,104 @@
 *   Now that you have your air travel database all set up and populated, please demonstrate how to:
 *
 *       1.) Query all flights on a specific day
+use air_travel;
+SELECT * FROM flights
+WHERE date(depart) = "2023-02-02";  #  DATE() function is used to extract the date part from a DateTime expression
+
 *       2.) Query all flights between two specific cities on a specific day
+use air_travel;
+SELECT * FROM flights
+WHERE date(depart) = "2023-02-02"
+AND origin = "1" AND destination = "2";
+
 *       3.) Query all passengers on a specific flight between two specific cities today
+use air_travel;
+SELECT p.firstName, p.lastName, a1.name AS origin, a2.name AS destination
+FROM passengers p
+JOIN tickets ON p.idPassengers = tickets.passenger
+JOIN flights ON tickets.flight = flights.idFlight
+JOIN airports a1 ON flights.origin = a1.idAirport
+JOIN airports a2 ON flights.destination = a2.idAirport
+WHERE flights.idFlight = "13";
+
 *       4.) Query the flight information for a specific passenger on a specific flight
+use air_travel;
+SELECT p.firstName, p.lastName, f.idFlight, f.depart, a1.IATAcode, f.arrive, a2.IATAcode
+FROM passengers p
+JOIN tickets ON p.idPassenger = tickets.passenger
+JOIN flights f ON tickets.flight = f.idFlight
+JOIN airports a1 ON f.origin = a1.idAirport
+JOIN airports a2 ON f.destination = a2.idAirport
+WHERE f.idFlight = "13"
+AND p.idPassenger = 1;
+
 *       5.) Query the passenger information for a specific user on a specific flight yesterday
+use air_travel;
+SELECT p.firstName, p.lastName, p.email
+FROM passengers p
+JOIN tickets ON p.idPassenger = tickets.passenger
+JOIN flights f ON tickets.flight = f.idFlight
+WHERE f.idFlight = "13"
+AND p.idPassenger = 1
+AND date(depart) = DATE_SUB(CURDATE(), INTERVAL 1 DAY);  # hopefully this is correct
+
 *       6.) Query the number of flights between two specific cities this week, month, and year
+
+These queries assume this to mean within. eg. this week = within the next 7 days
+
+use air_travel;
+SELECT COUNT(f.idFlight) as flights_AUS_MSP
+FROM flights f
+WHERE f.idFlight = "2"
+AND date(depart) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY);  # hopefully this is correct
+
+use air_travel;
+SELECT COUNT(f.idFlight) as flights_AUS_MSP
+FROM flights f
+WHERE f.idFlight = "2"
+AND date(depart) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH);  # hopefully this is correct
+
+use air_travel;
+SELECT COUNT(f.idFlight) as flights_AUS_MSP
+FROM flights f
+WHERE f.idFlight = "2"
+AND date(depart) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 YEAR);
+
 *       7.) Query the number of passengers that travelled between two specific cities today, this week, month and year
+These queries assume 'this' to 'mean' within. eg. this week = within the next 7 days
+
+use air_travel;
+SELECT f.idFlight, a1.name, a2.name, COUNT(p.idPassenger) as total_passengers
+FROM flights f
+JOIN tickets t ON f.idFlight = t.flight
+JOIN passengers p ON t.passenger = p.idPassenger
+JOIN airports a1 ON f.origin = a1.idAirport
+JOIN airports a2 ON f.destination = a2.idAirport
+WHERE date(depart) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 YEAR)  # For all other queries, change this interval to 1 DAY, etc.
+GROUP BY f.idFlight;
+
 *       8.) Insert records for new flights between airports
+use air_travel;
+INSERT INTO flights
+(plane, airline, origin, destination, depart, arrive)
+VALUES
+("5","1","1","5","2022-12-22 19:00","2022-12-22 20:00");
+
 *       9.) Insert records for new tickets and passengers on specific flights
+Assuming you meant both new tickets and new passengers.
+
+use air_travel;
+START TRANSACTION;
+INSERT INTO passengers (firstName, lastName, email, phone) VALUES ("Márta", "Astor", "martaastor@gmail.com", "559-324-9428");
+INSERT INTO tickets (passenger, flight) VALUES ("6","17");  # How to reference most recent passenger?
+COMMIT;
+
 *       10.) Update meal preference (or something similar) for a specific passenger on a specific flight
+use air_travel;
+UPDATE passengers
+SET phone = "831-431-6647"
+WHERE idPassenger = 3;
+
 *       Bonus: Have some fun - get creative - what else can you do? Flex those SQL muscles and show us what
 *           you've got! :)
 *

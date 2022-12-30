@@ -28,6 +28,21 @@ public class CustomQueue<V> {
         list.add(item);
         isEmpty = false;
     }
+    public void update(int index, V item) {
+        if (list.get(index) == null){
+            return;
+        } else {
+            list.set(index, item);
+        }
+    }
+    public boolean contains(V item) {
+        for (int i = 0; i < list.size(); i++) {
+           if (list.get(i) == item){
+               return true;
+           }
+        }
+        return false;
+    }
 
     /**
      * Removes an item from the Queue

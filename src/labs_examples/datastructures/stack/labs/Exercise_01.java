@@ -22,7 +22,7 @@ public class Exercise_01 {
         // push
         stringStack.push("D");
         // search
-        System.out.println("The index of B: " + stringStack.search("B"));
+        System.out.println("The index of Bw: " + stringStack.search("B"));
         System.out.println(stringStack.toString());
     }
 }
